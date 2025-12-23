@@ -38,7 +38,7 @@ if file:
         else:
             # 推論
             p = float(image_model.predict(face))
-            st.success(f"Fake Probability: {p:.2f*100}%")
+            st.success(f"Fake Probability: {p*100: .2f}%")
             st.progress(p)
 
     else:  # 影片
@@ -53,5 +53,5 @@ if file:
         if p is None:
             st.error("No face detected.")
         else:
-            st.success(f"Fake Probability: {p:.2f*100}%")
+            st.success(f"Fake Probability: {p*100: .2f}%")
             st.progress(p)
