@@ -45,10 +45,10 @@ if file:
 
             st.image(img_rgb)  # 顯示帶框的圖片
 
-            # 取第一張臉裁切做推論
-            x1, y1, x2, y2 = map(int, faces[0])
-            face_crop = img_rgb[y1:y2, x1:x2]
-            p = float(image_model.predict(face_crop))
+            # # 取第一張臉裁切做推論
+            # x1, y1, x2, y2 = map(int, faces[0])
+            # face_crop = img_rgb[y1:y2, x1:x2]
+            p = float(image_model.predict(faces))
             st.success(f"Fake Probability: {p:.2f}")
             st.progress(p)
 
