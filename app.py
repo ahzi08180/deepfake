@@ -74,20 +74,20 @@ if file:
             p = float(image_model.predict(face))
 
             # Display result in card style
-            st.markdown("---")
-            col1, col2 = st.columns([1,1])
+            # 左右併排
+            col1, col2 = st.columns([2,1])
+
             with col1:
-                st.markdown(
-                    f"""
-                    <div style="background-color:#f8f9fa; padding:20px; border-radius:15px; text-align:center;">
-                        <h2 style="color:#e63946;">Fake Probability</h2>
-                        <h1 style="color:#e63946;">{p*100:.2f}%</h1>
-                    </div>
-                    """, unsafe_allow_html=True
-                )
+                st.image(img_pil, caption="Detected Face", use_column_width=True)
+
             with col2:
                 st.markdown(f"""
-                <div style="position: relative; width:150px; height:150px; margin:auto;">
+                <div style="background-color:#f8f9fa; padding:20px; border-radius:15px; text-align:center;">
+                    <h2 style="color:#e63946;">Fake Probability</h2>
+                    <h1 style="color:#e63946;">{p*100:.2f}%</h1>
+                </div>
+
+                <div style="position: relative; width:150px; height:150px; margin:auto; margin-top:20px;">
                     <svg viewBox="0 0 36 36" class="circular-chart">
                         <path class="circle-bg"
                             d="M18 2.0845
@@ -101,6 +101,7 @@ if file:
                         <text x="18" y="20.35" class="percentage">{p*100:.1f}%</text>
                     </svg>
                 </div>
+
                 <style>
                 .circular-chart {{ display:block; max-width:100%; max-height:100%; }}
                 .circle-bg {{ fill:none; stroke:#eee; stroke-width:3.8; }}
