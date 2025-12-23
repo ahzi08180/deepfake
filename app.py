@@ -102,7 +102,7 @@ if file:
 
                 with inner_col2:
                     st.markdown(f"""
-                    <div style="padding:20px; border-radius:15px; text-align:center;">
+                    <div style="border-radius:15px; text-align:center;">
                         <h1 style="color:#e63946; font-size:40px;">Fake Probability</h1>
                     </div>
 
