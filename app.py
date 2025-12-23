@@ -34,7 +34,7 @@ if file:
         img_pil = Image.fromarray(img_rgb)
 
         # 使用 MTCNN 偵測人臉
-        faces = face_detector.mtcnn.detect(img_pil)[0]  # boxes
+        faces = face_detector.mtcnn.detect(img_pil)
         if faces is None:
             st.error("No face detected.")
         else:
@@ -48,7 +48,7 @@ if file:
             # 取第一張臉裁切做推論
             x1, y1, x2, y2 = map(int, faces[0])
             face_crop = img_rgb[y1:y2, x1:x2]
-            p = float(image_model.predict(faces))
+            p = float(image_model.predict(face_crop))
             st.success(f"Fake Probability: {p:.2f}")
             st.progress(p)
 
