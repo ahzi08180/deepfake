@@ -1,0 +1,68 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+
+# =========================
+# Virtual environment
+# =========================
+venv/
+.venv/
+.env*
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# PyTorch (ONLY ignore checkpoints)
+# =========================
+checkpoints/
+runs/
+logs/
+
+# ❌ 不再忽略 *.pth / *.pt
+# （讓你可以推 demo model）
+
+# =========================
+# Dataset (DO NOT PUSH)
+# =========================
+data/
+datasets/
+rvf10k/
+deepfake/
+videos/
+frames/
+
+*.zip
+*.tar
+*.tar.gz
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/secrets.toml
+
+# =========================
+# Outputs
+# =========================
+# results/
+reports/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
