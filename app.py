@@ -88,7 +88,7 @@ if file:
             # Display result in card style
             # 左右併排
             # 左右併排並置中
-            col1, col2, col3 = st.columns([1,3,1])  # 左空白、內容、右空白
+            col1, col2, col3 = st.columns([1,2,1])  # 左空白、內容、右空白
 
             with col1:
                 st.write("")  # 空白
