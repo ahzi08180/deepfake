@@ -8,6 +8,5 @@ A Streamlit-based system to detect AI-generated (deepfake) images and videos.
 - Deepfake probability output
 - EfficientNet backbone
 
-## Run
-pip install -r requirements.txt
-streamlit run app.py
+## Demo
+https://deepfake-24fla9vsi4ayyr3f8lueu9.streamlit.app/
