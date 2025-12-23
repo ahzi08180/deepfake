@@ -68,7 +68,7 @@ if file:
         else:
             # Draw face box
             img_pil = draw_face_box(img_pil, box)
-            st.image(img_pil, caption="Detected Face", use_column_width=True)
+            # st.image(img_pil, caption="Detected Face", use_column_width=True)
 
             # Predict
             p = float(image_model.predict(face))
@@ -78,13 +78,12 @@ if file:
             col1, col2 = st.columns([2,1])
 
             with col1:
-                st.image(img_pil, caption="Detected Face", use_column_width=True)
+                st.image(img_pil, caption="Detected Face", use_column_width=False)
 
             with col2:
                 st.markdown(f"""
-                <div style="background-color:#f8f9fa; padding:20px; border-radius:15px; text-align:center;">
+                <div style="padding:20px; border-radius:15px; text-align:center;">
                     <h2 style="color:#e63946;">Fake Probability</h2>
-                    <h1 style="color:#e63946;">{p*100:.2f}%</h1>
                 </div>
 
                 <div style="position: relative; width:150px; height:150px; margin:auto; margin-top:20px;">
