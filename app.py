@@ -106,7 +106,7 @@ if file:
                 with inner_col3:
                     st.markdown(f"""
                     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                        <h2 style="color:#ffffff; margin-bottom:5px; font-size:32px;">Fake Probability</h2>
+                        <h2 style="color:#ffffff; margin-bottom:0px; font-size:32px;">Fake Probability</h2>
                         <div style="position: relative; width:250px; height:250px; margin-top:5px;">
                             <svg viewBox="0 0 36 36" class="circular-chart">
                                 <path class="circle-bg"
