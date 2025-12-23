@@ -39,7 +39,7 @@ if file:
             st.error("No face detected.")
         else:
             # 在原圖上畫 bounding box
-            for box in faces:
+            for box in faces[0]:
                 x1, y1, x2, y2 = map(int, box)
                 cv2.rectangle(img_rgb, (x1, y1), (x2, y2), (0, 0, 255), 2)  # 紅色框
 
