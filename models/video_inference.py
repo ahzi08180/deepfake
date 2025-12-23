@@ -19,7 +19,7 @@ def predict_video(video_path, face_detector, image_model, frame_interval=5):
             if faces is not None:
                 for face in faces:
                     # resize 保證 224x224
-                    face = cv2.resize(face, (224,224))
+                    # face = cv2.resize(face, (224,224))
                     probs.append(image_model.predict(face))
 
         idx += 1
