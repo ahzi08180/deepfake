@@ -104,7 +104,7 @@ def plot_confusion_matrix(y_true, y_pred, save_path):
         cm,
         annot=True,
         fmt='d',
-        cmap='Blues',        # 🔵 藍色主題
+        cmap='Blues',
         cbar=True,
         xticklabels=['Real', 'Fake'],
         yticklabels=['Real', 'Fake']

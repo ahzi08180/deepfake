@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-def predict_video(video_path, face_detector, image_model, frame_interval=1):
+def predict_video(video_path, face_detector, image_model, frame_interval=5):
     """
     video_path: 影片路徑
     face_detector: MTCNN 版本 FaceDetector
