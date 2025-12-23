@@ -4,7 +4,7 @@ torchvision
 opencv-python-headless
 numpy
 Pillow
-mediapipe
+mediapipe==1.12.0
 tqdm
 scikit-learn
 matplotlib
