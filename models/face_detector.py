@@ -40,7 +40,7 @@ class FaceDetector:
         if return_box:
             return np.array(cropped), (x1, y1, x2, y2)
         else:
-            return np.array(cropped)
+            return np.array(cropped), None
 
 
     def detect_faces_video(self, video_path, max_frames=None, fps_sample=5):
