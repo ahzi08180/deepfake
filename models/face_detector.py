@@ -31,7 +31,7 @@ class FaceDetector:
 
         boxes, _ = self.mtcnn.detect(img)
         if boxes is None:
-            return None
+            return None, None
 
         # 只取第一張臉
         x1, y1, x2, y2 = map(int, boxes[0])
