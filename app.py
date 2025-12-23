@@ -105,7 +105,7 @@ if file:
                                 d="M18 2.0845
                                 a 15.9155 15.9155 0 0 1 0 31.831
                                 a 15.9155 15.9155 0 0 1 0-31.831"/>
-                            <text x="18" y="21" class="percentage">{p*100:.1f}%</text>
+                            <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
                         </svg>
                     </div>
 
@@ -113,7 +113,7 @@ if file:
                     .circular-chart {{ display:block; width:100%; height:100%; }}
                     .circle-bg {{ fill:none; stroke:#eee; stroke-width:4; }}
                     .circle {{ fill:none; stroke:#e63946; stroke-width:4; stroke-linecap:round; transition: stroke-dasharray 0.3s; }}
-                    .percentage {{ fill:#e63946; font-size:0.8em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
+                    .percentage {{ fill:#e63946; font-size:0.6em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
                     </style>
                     """, unsafe_allow_html=True)
 
