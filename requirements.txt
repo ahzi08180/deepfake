@@ -1,10 +1,11 @@
 streamlit
 torch
 torchvision
-opencv-python
+opencv-python-headless
 numpy
 Pillow
 mediapipe
 tqdm
 scikit-learn
 matplotlib
+seaborn

@@ -8,6 +8,7 @@ from tqdm import tqdm
 
 from sklearn.metrics import confusion_matrix, classification_report
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from dataset import RVF10KDataset
 
@@ -95,34 +96,29 @@ with torch.no_grad():
 # =====================
 # Confusion Matrix
 # =====================
-cm = confusion_matrix(all_labels, all_preds)
-print("\nConfusion Matrix:")
-print(cm)
+def plot_confusion_matrix(y_true, y_pred, save_path):
+    cm = confusion_matrix(y_true, y_pred)
 
-# Save CM values
-np.savetxt(
-    os.path.join(RESULT_DIR, "confusion_matrix.txt"),
-    cm,
-    fmt="%d"
-)
+    plt.figure(figsize=(6, 5))
+    sns.heatmap(
+        cm,
+        annot=True,
+        fmt='d',
+        cmap='Blues',        # 🔵 藍色主題
+        cbar=True,
+        xticklabels=['Real', 'Fake'],
+        yticklabels=['Real', 'Fake']
+    )
 
-# Plot CM
-plt.figure(figsize=(4, 4))
-plt.imshow(cm)
-plt.title("Confusion Matrix")
-plt.xlabel("Predicted")
-plt.ylabel("True")
-plt.colorbar()
-plt.xticks([0, 1], ["Real", "Fake"])
-plt.yticks([0, 1], ["Real", "Fake"])
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.title('Confusion Matrix')
 
-for i in range(2):
-    for j in range(2):
-        plt.text(j, i, cm[i, j], ha="center", va="center")
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()
 
-plt.tight_layout()
-plt.savefig(os.path.join(RESULT_DIR, "confusion_matrix.png"))
-plt.close()
+plot_confusion_matrix(all_labels, all_preds, os.path.join(RESULT_DIR, "confusion_matrix.png"))
 
 # =====================
 # Classification Report
