@@ -17,7 +17,7 @@ def load_all():
     return FaceDetector(device='cpu'), DeepfakeImageModel("saved_models/deepfake_model.pth")
 
 face_detector, image_model = load_all()
-image_model.eval()
+image_model.model.eval()
 
 file = st.file_uploader("Upload image or video", type=["jpg", "png", "mp4"])
 
