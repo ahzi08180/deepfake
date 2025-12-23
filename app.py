@@ -44,7 +44,19 @@ st.markdown(
 # ===============================
 # Upload Section
 # ===============================
-file = st.file_uploader("📁 Upload an image or video", type=["jpg","png","mp4"], width=500)
+# file = st.file_uploader("📁 Upload an image or video", type=["jpg","png","mp4"], width=500)
+
+# 用 st.columns 置中
+col1, col2, col3 = st.columns([1,2,1])
+
+with col1:
+    st.write("")
+
+with col2:
+    file = st.file_uploader("📁 Upload an image or video", type=["jpg","png","mp4"], width=500)
+
+with col3:
+    st.write("")
 
 def draw_face_box(img_pil, box):
     draw = ImageDraw.Draw(img_pil)
