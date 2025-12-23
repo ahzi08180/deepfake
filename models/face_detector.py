@@ -13,11 +13,14 @@ class FaceDetector:
         """
         self.mtcnn = MTCNN(keep_all=True, device=device)
 
-    def detect_faces_image(self, img_path):
+    def detect_faces_image(self, img_path, return_box=False):
         """
         偵測單張影像人臉並裁切
         img_path: 影像路徑或 PIL.Image 對象
-        回傳：裁切後的 numpy array 或 None
+        return_box: 是否回傳 bounding box
+        回傳：
+            return_box=False: np.array(cropped face) 或 None
+            return_box=True: (np.array(cropped face), box) 或 None
         """
         if isinstance(img_path, str):
             img = Image.open(img_path).convert('RGB')
@@ -33,7 +36,12 @@ class FaceDetector:
         # 只取第一張臉
         x1, y1, x2, y2 = map(int, boxes[0])
         cropped = img.crop((x1, y1, x2, y2))
-        return np.array(cropped)
+
+        if return_box:
+            return np.array(cropped), (x1, y1, x2, y2)
+        else:
+            return np.array(cropped)
+
 
     def detect_faces_video(self, video_path, max_frames=None, fps_sample=5):
         """

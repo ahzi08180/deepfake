@@ -62,7 +62,7 @@ if file:
         img_pil = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
         # Detect faces
-        face, box = face_detector.detect_faces_image(img_pil)
+        face, box = face_detector.detect_faces_image(img_pil, return_box=True)
         if face is None:
             st.error("❌ No face detected.")
         else:
