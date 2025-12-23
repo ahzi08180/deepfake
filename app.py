@@ -96,29 +96,28 @@ if file:
             with col2:
                 # 再用內部兩列左右併排圖片與結果
                 inner_col1, inner_col2 = st.columns([1,1])
-                img_width = 400
+                img_width = 250
                 with inner_col1:
                     st.image(img_pil, caption="Detected Face", width=img_width)
 
                 with inner_col2:
                     st.markdown(f"""
-                    <div style="margin: auto; padding:20px; border-radius:15px; text-align:center;">
-                        <h1 style="color:#e63946; font-size:40px;">Fake Probability</h1>
-                    </div>
-
-                    <div style="position: relative; width:220px; height:220px; margin:auto; margin-top:5px;">
-                        <svg viewBox="0 0 36 36" class="circular-chart">
-                            <path class="circle-bg"
-                                d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0-31.831"/>
-                            <path class="circle"
-                                stroke-dasharray="{p*100}, 100"
-                                d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0-31.831"/>
-                            <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
-                        </svg>
+                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                        <h2 style="color:#e63946; margin-bottom:5px; font-size:40px;">Fake Probability</h2>
+                        <div style="position: relative; width:{img_width}px; height:{img_width}px; margin-top:5px;">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
+                                <path class="circle"
+                                    stroke-dasharray="{p*100}, 100"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
+                                <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
+                            </svg>
+                        </div>
                     </div>
 
                     <style>
