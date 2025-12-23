@@ -150,7 +150,7 @@ if file:
             col_left, col_center, col_right = st.columns([1,2,1])
             with col_center:
                 inner_col_video, inner_col_result = st.columns([1,1])
-                vid_width = 400
+                vid_width = 600
                 with inner_col_video:
                     st.video(tfile.name, start_time=0, format="video/mp4", width=vid_width)
                 with inner_col_result:
