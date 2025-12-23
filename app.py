@@ -14,7 +14,7 @@ st.title("🎭 Deepfake Image & Video Detector")
 @st.cache_resource
 def load_all():
     # device='cpu' or 'cuda' 可依環境調整
-    return FaceDetector(device='cpu'), DeepfakeImageModel("saved_models/demo_model.pth")
+    return FaceDetector(device='cpu'), DeepfakeImageModel("saved_models/deepfake_model.pth")
 
 face_detector, image_model = load_all()
 
