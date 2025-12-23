@@ -104,7 +104,7 @@ if file:
                     st.markdown(f"""
                     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                         <h2 style="color:#e63946; margin-bottom:5px; font-size:40px;">Fake Probability</h2>
-                        <div style="position: relative; width:{img_width}px; height:{img_width}px; margin-top:5px;">
+                        <div style="position: relative; width:250px; height:250px; margin-top:5px;">
                             <svg viewBox="0 0 36 36" class="circular-chart">
                                 <path class="circle-bg"
                                     d="M18 2.0845
