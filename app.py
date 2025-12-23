@@ -94,7 +94,7 @@ if file:
                         <h1 style="color:#e63946; font-size:24px;">Fake Probability</h1>
                     </div>
 
-                    <div style="position: relative; width:250px; height:250px; margin:auto; margin-top:10px;">
+                    <div style="position: relative; width:220px; height:220px; margin:auto; margin-top:10px;">
                         <svg viewBox="0 0 36 36" class="circular-chart">
                             <path class="circle-bg"
                                 d="M18 2.0845
@@ -105,15 +105,15 @@ if file:
                                 d="M18 2.0845
                                 a 15.9155 15.9155 0 0 1 0 31.831
                                 a 15.9155 15.9155 0 0 1 0-31.831"/>
-                            <text x="12" y="15" class="percentage">{p*100:.1f}%</text>
+                            <text x="18" y="21" class="percentage">{p*100:.1f}%</text>
                         </svg>
                     </div>
 
                     <style>
-                    .circular-chart {{ display:block; max-width:100%; max-height:100%; }}
-                    .circle-bg {{ fill:none; stroke:#eee; stroke-width:5; }}
-                    .circle {{ fill:none; stroke:#e63946; stroke-width:5; stroke-linecap:round; transition: stroke-dasharray 0.3s; }}
-                    .percentage {{ fill:#e63946; font-size:1em; text-anchor:middle; }}
+                    .circular-chart {{ display:block; width:100%; height:100%; }}
+                    .circle-bg {{ fill:none; stroke:#eee; stroke-width:4; }}
+                    .circle {{ fill:none; stroke:#e63946; stroke-width:4; stroke-linecap:round; transition: stroke-dasharray 0.3s; }}
+                    .percentage {{ fill:#e63946; font-size:0.8em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
                     </style>
                     """, unsafe_allow_html=True)
 
