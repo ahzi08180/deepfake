@@ -106,7 +106,7 @@ if file:
                         <h1 style="color:#e63946; font-size:40px;">Fake Probability</h1>
                     </div>
 
-                    <div style="position: relative; width:220px; height:220px; margin:auto; margin-top:0px;">
+                    <div style="position: relative; width:220px; height:220px; margin:auto; margin-top:5px;">
                         <svg viewBox="0 0 36 36" class="circular-chart">
                             <path class="circle-bg"
                                 d="M18 2.0845
