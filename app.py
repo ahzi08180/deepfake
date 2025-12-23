@@ -17,6 +17,7 @@ def load_all():
     return FaceDetector(device='cpu'), DeepfakeImageModel("saved_models/deepfake_model.pth")
 
 face_detector, image_model = load_all()
+image_model.eval()
 
 file = st.file_uploader("Upload image or video", type=["jpg", "png", "mp4"])
 
@@ -37,7 +38,7 @@ if file:
         else:
             # 推論
             p = float(image_model.predict(face))
-            st.success(f"Fake Probability: {p:.2f}")
+            st.success(f"Fake Probability: {p:.2f*100}%")
             st.progress(p)
 
     else:  # 影片
@@ -52,5 +53,5 @@ if file:
         if p is None:
             st.error("No face detected.")
         else:
-            st.success(f"Fake Probability: {p:.2f}")
+            st.success(f"Fake Probability: {p:.2f*100}%")
             st.progress(p)
