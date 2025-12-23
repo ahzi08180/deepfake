@@ -83,15 +83,15 @@ if file:
 
             with col2:
                 # 再用內部兩列左右併排圖片與結果
-                inner_col1, inner_col2 = st.columns([2,1])
-                
+                inner_col1, inner_col2 = st.columns([1,1])
+                img_width = 220
                 with inner_col1:
-                    st.image(img_pil, caption="Detected Face", use_column_width=True)
+                    st.image(img_pil, caption="Detected Face", width=img_width)
 
                 with inner_col2:
                     st.markdown(f"""
                     <div style="padding:20px; border-radius:15px; text-align:center;">
-                        <h1 style="color:#e63946; font-size:24px;">Fake Probability</h1>
+                        <h1 style="color:#e63946; font-size:40px;">Fake Probability</h1>
                     </div>
 
                     <div style="position: relative; width:220px; height:220px; margin:auto; margin-top:10px;">
