@@ -29,4 +29,4 @@ def predict_video(video_path, face_detector, image_model, frame_interval=15):
         idx += 1
 
     cap.release()
-    return None if len(probs) == 0 else float(np.max(probs))
+    return None if len(probs) == 0 else float(max(probs))
