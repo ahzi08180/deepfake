@@ -132,22 +132,52 @@ if file:
                     """, unsafe_allow_html=True)
 
             with col3:
-                st.write("")  # 空白
+                st.write("")
 
 
     else:  # Video
         tfile = tempfile.NamedTemporaryFile(delete=False)
         tfile.write(file.read())
-        st.video(tfile.name, start_time=0)
 
+        # Predict probability
         with st.spinner("🔍 Analyzing video..."):
             p = predict_video(tfile.name, face_detector, image_model)
 
         if p is None:
             st.error("❌ No face detected in video.")
         else:
-            st.markdown("---")
-            st.subheader("🎯 Video Prediction Result")
-            st.metric("Fake Probability", f"{p*100:.2f}%")
+            # Layout: outer columns for centering
+            col_left, col_center, col_right = st.columns([1,2,1])
+            with col_center:
+                inner_col_video, inner_col_result = st.columns([1,1])
+                vid_width = 250
+                with inner_col_video:
+                    st.video(tfile.name, start_time=0, format="video/mp4", width=vid_width)
+                with inner_col_result:
+                    st.markdown(f"""
+                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                        <h2 style="color:#e63946; margin-bottom:5px;">Fake Probability</h2>
+                        <div style="position: relative; width:{vid_width}px; height:{vid_width}px; margin-top:5px;">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
+                                <path class="circle"
+                                    stroke-dasharray="{p*100}, 100"
+                                    d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
+                                <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <style>
+                    .circular-chart {{ display:block; width:100%; height:100%; }}
+                    .circle-bg {{ fill:none; stroke:#eee; stroke-width:4; }}
+                    .circle {{ fill:none; stroke:#e63946; stroke-width:4; stroke-linecap:round; transition: stroke-dasharray 0.3s; }}
+                    .percentage {{ fill:#e63946; font-size:0.6em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
+                    </style>
+                    """, unsafe_allow_html=True)
 else:
     st.info("ℹ️ Please upload an image or video to start detection.")
