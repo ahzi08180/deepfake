@@ -109,11 +109,10 @@ if file:
                 img_width = 400
                 with inner_col1:
                     st.image(img_pil, caption="Detected Face", width=img_width)
-                    st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
-
                 
                 with inner_col2:
-                    st.markdown("")
+                    st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
+
 
                 with inner_col3:
                     st.markdown(f"""
