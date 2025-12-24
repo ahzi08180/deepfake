@@ -7,6 +7,8 @@ from PIL import Image, ImageDraw, ImageFont
 from models.face_detector import FaceDetector
 from models.image_model import DeepfakeImageModel
 from models.video_inference import predict_video
+from models.grad_cam import GradCAM, overlay_cam
+
 
 # ===============================
 # Page Config
@@ -26,6 +28,9 @@ def load_all():
 
 face_detector, image_model = load_all()
 image_model.model.eval()
+
+target_layer = image_model.model.features[-1]
+grad_cam = GradCAM(image_model.model, target_layer)
 
 # ===============================
 # Header
@@ -85,6 +90,11 @@ if file:
             # Predict
             p = float(image_model.predict(face))
 
+            image_model.model.zero_grad()
+            input_tensor = face.unsqueeze(0)          # (1, C, H, W)
+            cam = grad_cam.generate(input_tensor)      # (H, W)
+            cam_overlay = overlay_cam(img_pil, cam)    # numpy image
+
             # Display result in card style
             # 左右併排
             # 左右併排並置中
@@ -99,6 +109,8 @@ if file:
                 img_width = 400
                 with inner_col1:
                     st.image(img_pil, caption="Detected Face", width=img_width)
+                    st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
+
                 
                 with inner_col2:
                     st.markdown("")
