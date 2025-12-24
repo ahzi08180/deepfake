@@ -90,10 +90,22 @@ if file:
             # Predict
             p = float(image_model.predict(face))
 
+            import torch
+
             image_model.model.zero_grad()
-            input_tensor = face.unsqueeze(0)          # (1, C, H, W)
-            cam = grad_cam.generate(input_tensor)      # (H, W)
-            cam_overlay = overlay_cam(img_pil, cam)    # numpy image
+
+            # numpy -> torch tensor
+            input_tensor = torch.from_numpy(face).float()
+
+            # 若是 HWC 轉成 CHW（保險起見）
+            if input_tensor.ndim == 3:
+                input_tensor = input_tensor.permute(2, 0, 1)
+
+            input_tensor = input_tensor.unsqueeze(0)  # (1, C, H, W)
+
+            cam = grad_cam.generate(input_tensor)
+            cam_overlay = overlay_cam(img_pil, cam)
+
 
             # Display result in card style
             # 左右併排
