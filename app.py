@@ -109,42 +109,63 @@ if file:
             # Display result in card style
             # 左右併排
             # 左右併排並置中
-            col1, col2, col3 = st.columns([1,1,1])  # 左空白、內容、右空白
-            img_width = 400
+        outer_left, outer_center, outer_right = st.columns([1, 3, 1])
 
-            with col1:
-                st.image(img_pil, caption="Detected Face", width=img_width)
+        with outer_center:
+            img_col, cam_col, prob_col = st.columns([1, 1, 1])
 
-            with col2:
-                st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
+            card_width = 380
 
-            with col3:
+            with img_col:
+                st.markdown(
+                    "<div style='display:flex; justify-content:center;'>",
+                    unsafe_allow_html=True
+                )
+                st.image(img_pil, caption="Detected Face", width=card_width)
+                st.markdown("</div>", unsafe_allow_html=True)
+
+            with cam_col:
+                st.markdown(
+                    "<div style='display:flex; justify-content:center;'>",
+                    unsafe_allow_html=True
+                )
+                st.image(cam_overlay, caption="Grad-CAM Explanation", width=card_width)
+                st.markdown("</div>", unsafe_allow_html=True)
+
+            with prob_col:
                 st.markdown(f"""
-                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                        <h2 style="color:#ffffff; margin-bottom:0px; font-size:32px;">Fake Probability</h2>
-                        <div style="position: relative; width:250px; height:250px; margin-top:5px;">
-                            <svg viewBox="0 0 36 36" class="circular-chart">
-                                <path class="circle-bg"
-                                    d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
-                                <path class="circle"
-                                    stroke-dasharray="{p*100}, 100"
-                                    d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0-31.831"/>
-                                <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
-                            </svg>
-                        </div>
+                <div style="
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    height:100%;
+                ">
+                    <h3 style="color:#e63946; margin-bottom:5px;">Fake Probability</h3>
+                    <div style="width:220px; height:220px;">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0-31.831"/>
+                            <path class="circle"
+                                stroke-dasharray="{p*100}, 100"
+                                d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0-31.831"/>
+                            <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
+                        </svg>
                     </div>
+                </div>
 
-                    <style>
-                    .circular-chart {{ display:block; width:100%; height:100%; }}
-                    .circle-bg {{ fill:none; stroke:#eee; stroke-width:4; }}
-                    .circle {{ fill:none; stroke:#e63946; stroke-width:4; stroke-linecap:round; transition: stroke-dasharray 0.3s; }}
-                    .percentage {{ fill:#e63946; font-size:0.6em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
-                    </style>
-                    """, unsafe_allow_html=True)
+                <style>
+                .circular-chart {{ width:100%; height:100%; }}
+                .circle-bg {{ fill:none; stroke:#eee; stroke-width:4; }}
+                .circle {{ fill:none; stroke:#e63946; stroke-width:4; stroke-linecap:round; }}
+                .percentage {{ fill:#e63946; font-size:0.6em; font-weight:bold;
+                            text-anchor:middle; dominant-baseline:middle; }}
+                </style>
+                """, unsafe_allow_html=True)
 
 
     else:  # Video
