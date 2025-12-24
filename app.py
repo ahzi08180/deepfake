@@ -110,23 +110,16 @@ if file:
             # 左右併排
             # 左右併排並置中
             col1, col2, col3 = st.columns([1,1,1])  # 左空白、內容、右空白
+            img_width = 400
 
             with col1:
-                st.write("")  # 空白
+                st.image(img_pil, caption="Detected Face", width=img_width)
 
             with col2:
-                # 再用內部兩列左右併排圖片與結果
-                inner_col1, inner_col2, inner_col3 = st.columns([1,1,1])
-                img_width = 400
-                with inner_col1:
-                    st.image(img_pil, caption="Detected Face", width=img_width)
-                
-                with inner_col2:
-                    st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
+                st.image(cam_overlay, caption="Grad-CAM Explanation", width=img_width)
 
-
-                with inner_col3:
-                    st.markdown(f"""
+            with col3:
+                st.markdown(f"""
                     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
                         <h2 style="color:#ffffff; margin-bottom:0px; font-size:32px;">Fake Probability</h2>
                         <div style="position: relative; width:250px; height:250px; margin-top:5px;">
@@ -152,9 +145,6 @@ if file:
                     .percentage {{ fill:#e63946; font-size:0.6em; font-weight:bold; text-anchor:middle; dominant-baseline:middle; }}
                     </style>
                     """, unsafe_allow_html=True)
-
-            with col3:
-                st.write("")
 
 
     else:  # Video
