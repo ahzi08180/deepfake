@@ -6,55 +6,51 @@ import cv2
 
 class GradCAM:
     def __init__(self, model, target_layer):
-        """
-        model: your CNN model
-        target_layer: the last convolutional layer (nn.Module)
-        """
         self.model = model
         self.target_layer = target_layer
         self.gradients = None
         self.activations = None
-
         self._register_hooks()
 
     def _register_hooks(self):
         def forward_hook(module, input, output):
             self.activations = output.detach()
 
-        def backward_hook(module, grad_in, grad_out):
-            self.gradients = grad_out[0].detach()
+        def backward_hook(module, grad_input, grad_output):
+            self.gradients = grad_output[0].detach()
 
         self.target_layer.register_forward_hook(forward_hook)
         self.target_layer.register_backward_hook(backward_hook)
 
-    def generate(self, input_tensor, target_class=None):
+    def generate(self, input_tensor):
         """
-        input_tensor: (1, C, H, W)
-        target_class: None -> use predicted class
+        input_tensor: shape (1, C, H, W)
         """
         self.model.zero_grad()
+        output = self.model(input_tensor)
 
-        output = self.model(input_tensor)  # shape: (1, num_classes) or (1, 1)
-
-        if target_class is None:
-            target_class = output.argmax(dim=1)
-
-        # For binary classifier (sigmoid output)
-        if output.shape[-1] == 1:
-            score = output[0]
+        # binary classifier (sigmoid)
+        if output.dim() == 2 and output.size(1) == 1:
+            score = output[0, 0]
         else:
-            score = output[0, target_class]
+            score = output.max()
 
         score.backward(retain_graph=True)
 
-        # Global Average Pooling on gradients
         weights = self.gradients.mean(dim=(2, 3), keepdim=True)
-
         cam = (weights * self.activations).sum(dim=1)
         cam = F.relu(cam)
 
         cam = cam[0].cpu().numpy()
         cam = cv2.resize(cam, (input_tensor.shape[3], input_tensor.shape[2]))
-
         cam = (cam - cam.min()) / (cam.max() + 1e-8)
         return cam
+
+
+def overlay_cam(image_pil, cam):
+    image = np.array(image_pil)
+    heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+    heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
+
+    overlay = heatmap * 0.4 + image * 0.6
+    return overlay.astype(np.uint8)
