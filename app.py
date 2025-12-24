@@ -3,6 +3,7 @@ import cv2
 import tempfile
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+import torch
 
 from models.face_detector import FaceDetector
 from models.image_model import DeepfakeImageModel
@@ -90,8 +91,6 @@ if file:
             # Predict
             p = float(image_model.predict(face))
 
-            import torch
-
             image_model.model.zero_grad()
 
             # numpy -> torch tensor
@@ -110,7 +109,7 @@ if file:
             # Display result in card style
             # 左右併排
             # 左右併排並置中
-            col1, col2, col3 = st.columns([1,2,1])  # 左空白、內容、右空白
+            col1, col2, col3 = st.columns([1,1,1])  # 左空白、內容、右空白
 
             with col1:
                 st.write("")  # 空白
