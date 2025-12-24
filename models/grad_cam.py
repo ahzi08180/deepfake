@@ -48,9 +48,24 @@ class GradCAM:
 
 
 def overlay_cam(image_pil, cam):
+    """
+    image_pil: PIL.Image (原圖)
+    cam: numpy array (H, W) from Grad-CAM
+    """
+
+    # PIL -> numpy
     image = np.array(image_pil)
-    heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+
+    # 將 CAM resize 成 image 大小
+    cam_resized = cv2.resize(cam, (image.shape[1], image.shape[0]))
+
+    # CAM -> heatmap
+    heatmap = cv2.applyColorMap(
+        np.uint8(255 * cam_resized),
+        cv2.COLORMAP_JET
+    )
     heatmap = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
 
+    # 疊圖
     overlay = heatmap * 0.4 + image * 0.6
     return overlay.astype(np.uint8)
