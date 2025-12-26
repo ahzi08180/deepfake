@@ -114,7 +114,7 @@ if file:
         with outer_center:
             img_col, cam_col, prob_col = st.columns([1, 1, 1])
 
-            card_width = 380
+            card_width = 250
 
             with img_col:
                 st.markdown(
