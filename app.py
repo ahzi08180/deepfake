@@ -114,11 +114,11 @@ if file:
         with outer_center:
             img_col, cam_col, prob_col = st.columns([1, 1, 1])
 
-            card_width = 250
+            card_width = 380
 
             with img_col:
                 st.markdown(
-                    "<div style='display:flex; justify-content:center;'>",
+                    "<div style='display:flex; justify-content: flex-start;'>",
                     unsafe_allow_html=True
                 )
                 st.image(img_pil, caption="Detected Face", width=card_width)
@@ -138,7 +138,7 @@ if file:
                     display:flex;
                     flex-direction:column;
                     align-items:center;
-                    justify-content:center;
+                    justify-content: flex-start;
                     height:100%;
                 ">
                     <h3 style="color:#e63946; margin-bottom:5px;">Fake Probability</h3>
