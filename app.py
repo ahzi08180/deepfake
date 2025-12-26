@@ -112,28 +112,41 @@ if file:
         outer_left, outer_center, outer_right = st.columns([1, 3, 1])
 
         with outer_center:
-            img_col, cam_col, prob_col = st.columns([1, 1, 1])
+            img_col, col_empty, cam_col, col_empty2, prob_col = st.columns([1, 1, 1, 1, 1])
 
             card_width = 280
 
             with img_col:
-                # st.markdown(
-                #     "<div style='display:flex; justify-content:center;'>",
-                #     unsafe_allow_html=True
-                # )
+                st.markdown(
+                    "<div style='display:flex; justify-content:center;'>",
+                    unsafe_allow_html=True
+                )
                 st.image(img_pil, caption="Detected Face", width=card_width)
-                # st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+            
+            with col_empty:
+                st.write("")
 
             with cam_col:
-                # st.markdown(
-                #     "<div style='display:flex; justify-content:center;'>",
-                #     unsafe_allow_html=True
-                # )
+                st.markdown(
+                    "<div style='display:flex; justify-content:center;'>",
+                    unsafe_allow_html=True
+                )
                 st.image(cam_overlay, caption="Grad-CAM Explanation", width=card_width)
-                # st.markdown("</div>", unsafe_allow_html=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+
+            with col_empty2:
+                st.write("")
 
             with prob_col:
                 st.markdown(f"""
+                <div style="
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    height:100%;
+                ">
                     <h3 style="color:#e63946; margin-bottom:5px;">Fake Probability</h3>
                     <div style="width:220px; height:220px;">
                         <svg viewBox="0 0 36 36" class="circular-chart">
@@ -149,6 +162,7 @@ if file:
                             <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
                         </svg>
                     </div>
+                </div>
 
                 <style>
                 .circular-chart {{ width:100%; height:100%; }}
