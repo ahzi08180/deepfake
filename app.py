@@ -114,23 +114,23 @@ if file:
         with outer_center:
             img_col, cam_col, prob_col = st.columns([1, 1, 1])
 
-            card_width = 380
+            card_width = 280
 
             with img_col:
-                st.markdown(
-                    "<div style='display:flex; justify-content: flex-start;'>",
-                    unsafe_allow_html=True
-                )
+                # st.markdown(
+                #     "<div style='display:flex; justify-content:center;'>",
+                #     unsafe_allow_html=True
+                # )
                 st.image(img_pil, caption="Detected Face", width=card_width)
-                st.markdown("</div>", unsafe_allow_html=True)
+                # st.markdown("</div>", unsafe_allow_html=True)
 
             with cam_col:
-                st.markdown(
-                    "<div style='display:flex; justify-content:center;'>",
-                    unsafe_allow_html=True
-                )
+                # st.markdown(
+                #     "<div style='display:flex; justify-content:center;'>",
+                #     unsafe_allow_html=True
+                # )
                 st.image(cam_overlay, caption="Grad-CAM Explanation", width=card_width)
-                st.markdown("</div>", unsafe_allow_html=True)
+                # st.markdown("</div>", unsafe_allow_html=True)
 
             with prob_col:
                 st.markdown(f"""
@@ -138,7 +138,7 @@ if file:
                     display:flex;
                     flex-direction:column;
                     align-items:center;
-                    justify-content: flex-start;
+                    justify-content:center;
                     height:100%;
                 ">
                     <h3 style="color:#e63946; margin-bottom:5px;">Fake Probability</h3>
