@@ -134,13 +134,6 @@ if file:
 
             with prob_col:
                 st.markdown(f"""
-                <div style="
-                    display:flex;
-                    flex-direction:column;
-                    align-items:center;
-                    justify-content:center;
-                    height:100%;
-                ">
                     <h3 style="color:#e63946; margin-bottom:5px;">Fake Probability</h3>
                     <div style="width:220px; height:220px;">
                         <svg viewBox="0 0 36 36" class="circular-chart">
@@ -156,7 +149,6 @@ if file:
                             <text x="18" y="18" class="percentage">{p*100:.1f}%</text>
                         </svg>
                     </div>
-                </div>
 
                 <style>
                 .circular-chart {{ width:100%; height:100%; }}
