@@ -147,7 +147,7 @@ if file:
                     justify-content:center;
                     height:100%;
                 ">
-                    <h3 style="font-size:1.2em; color:#e63946; margin-bottom:5px;">Fake Probability</h3>
+                    <h3 style="font-size:1.4em; color:#e63946; margin-bottom:5px;">Fake Probability</h3>
                     <div style="width:220px; height:220px;">
                         <svg viewBox="0 0 36 36" class="circular-chart">
                             <path class="circle-bg"
